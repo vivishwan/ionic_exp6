@@ -1,0 +1,143 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Form</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"> </ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Your name</ion-label>
+    <ion-input [(ngModel)]="name"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">email</ion-label>
+    <ion-input [(ngModel)]="email"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Phone number</ion-label>
+    <ion-input [(ngModel)]="phone"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">UCID</ion-label>
+    <ion-input [(ngModel)]="uid"></ion-input>
+  </ion-item>
+  <br /><br />
+  <ion-item><ion-label>Graduation</ion-label></ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Passing Year</ion-label>
+
+    <ion-input [(ngModel)]="clgPassing"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">College Name</ion-label>
+    <ion-input [(ngModel)]="clgCollege"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Marks Obtained</ion-label>
+    <ion-input type="number" [(ngModel)]="clgMarks"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Total Marks</ion-label>
+    <ion-input type="number" [(ngModel)]="clgTotal"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input readonly
+      >Percentage : {{(clgMarks/clgTotal)*100}}%</ion-input
+    > </ion-item
+  ><br /><br />
+
+  <ion-item>
+    <ion-item><ion-label>HSC</ion-label></ion-item>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Passing Year</ion-label>
+    <ion-input [(ngModel)]="hscPassing"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">College</ion-label>
+    <ion-input [(ngModel)]="hscCollege"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Marks Obtained</ion-label>
+    <ion-input type="number" [(ngModel)]="hscMarks"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Total Marks</ion-label>
+    <ion-input type="number" [(ngModel)]="hscTotal"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input readonly
+      >Percentage : {{(hscMarks/hscTotal)*100}}%</ion-input
+    > </ion-item
+  ><br /><br />
+
+  <ion-item>
+    <ion-item><ion-label>SSC</ion-label></ion-item>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Passing Year</ion-label>
+    <ion-input [(ngModel)]="sscPassing"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">School</ion-label>
+    <ion-input [(ngModel)]="sscCollege"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Marks Obtained</ion-label>
+    <ion-input type="number" [(ngModel)]="sscMarks"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Total Marks</ion-label>
+    <ion-input type="number" [(ngModel)]="sscTotal"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input readonly>Percentage : {{(sscMarks/sscTotal)*100}}%</ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-card
+      class="ion-text-center"
+      *ngIf="!isFileUploading && !isFileUploaded"
+    >
+      <ion-card-header>
+        <h1><ion-icon name="document-attach-outline"></ion-icon></h1>
+        <ion-card-title>Resume</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-button color="primary" size="medium">
+          <input type="file" (change)="uploadImage($event.target.files)" />
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- File upload progress bar -->
+    <div *ngIf="percentageVal | async as percentage">
+      Progress: {{ percentage | number }}%
+      <ion-progress-bar value="{{ percentage / 100 }}"></ion-progress-bar>
+    </div>
+
+    <div *ngIf="trackSnapshot | async as snap">
+      File size: {{ snap.totalBytes | formatFileSize }} Data transfered: {{
+      snap.bytesTransferred | formatFileSize }}
+      <a [href]="downloadURL | async">{{ downloadURL | async }}</a>
+    </div>
+  </ion-item>
+  <ion-button
+    color="primary"
+    expand="block"
+    fill="outline"
+    (click)="submitForm()"
+    >Submit</ion-button
+  >
+</ion-content>

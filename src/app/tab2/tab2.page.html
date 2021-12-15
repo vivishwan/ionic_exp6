@@ -1,0 +1,99 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>View Files</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item>
+      <ion-icon name="person-outline"></ion-icon>&nbsp;&nbsp; <b>Name :</b>
+      <ion-input readonly [(ngModel)]="name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="mail-outline"></ion-icon>&nbsp;&nbsp;<b>Email :</b>
+      <ion-input readonly [(ngModel)]="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="call-outline"></ion-icon>&nbsp;&nbsp;<b>Contact :</b>
+      <ion-input readonly [(ngModel)]="phone"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="stats-chart-outline"></ion-icon>&nbsp;&nbsp;<b>UCID :</b>
+      <ion-input type="number" readonly [(ngModel)]="uid"></ion-input>
+    </ion-item>
+    <br />
+
+    <ion-item>
+      <ion-item><ion-label>Graduation</ion-label></ion-item>
+    </ion-item>
+    <ion-item>
+      <b>Passing Year :</b>
+      <ion-datetime
+        displayFormat="YYYY"
+        readonly
+        [(ngModel)]="clgPassing"
+      ></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <b>College Name :</b>
+      <ion-input [(ngModel)]="clgCollege" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input readonly><b>Percentage : </b>{{clgPercentage}}%</ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-item><ion-label>HSC</ion-label></ion-item>
+    </ion-item>
+    <ion-item>
+      <b>Passing Year :</b>
+      <ion-datetime
+        displayFormat="YYYY"
+        readonly
+        [(ngModel)]="hscPassing"
+      ></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <b>College Name :</b>
+      <ion-input [(ngModel)]="hscCollege" readonly></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input readonly><b>Percentage : </b> {{hscPercentage}}%</ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-item><ion-label>SSC</ion-label></ion-item>
+    </ion-item>
+    <ion-item>
+      <b>Passing Year :</b
+      ><ion-datetime
+        displayFormat="YYYY"
+        readonly
+        [(ngModel)]="sscPassing"
+      ></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <b>School Name :</b>
+      <ion-input readonly [(ngModel)]="sscCollege"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input readonly><b>Percentage : </b>{{sscPercentage}}%</ion-input>
+    </ion-item>
+
+    <ion-list>
+      <ion-item *ngFor="let f of cloudFiles">
+        <ion-button href="{{f.url}}">View Resume</ion-button>
+        <ion-label class="ion-text-wrap">
+          {{ f.name }}
+          <p>{{ f.full }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+</ion-content>
